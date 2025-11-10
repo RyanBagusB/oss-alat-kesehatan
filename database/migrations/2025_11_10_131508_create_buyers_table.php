@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('buyers', function (Blueprint $table) {
@@ -19,7 +16,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('paypal_id')->nullable();
+            $table->string('paypal_id');
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -30,9 +27,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('buyers');

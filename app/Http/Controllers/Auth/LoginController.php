@@ -10,33 +10,33 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login', ['title' => 'Login']);
+        return view('auth.login', ['title' => 'Masuk']);
     }
 
     public function login(Request $request)
     {
         $request->validate([
             'login' => ['required', 'string'],
-            'password' => ['required'],
+            'password' => ['required', 'string'],
+        ], [
+            'login.required' => 'Username atau email wajib diisi.',
+            'password.required' => 'Kata sandi wajib diisi.',
         ]);
 
-        $loginField = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $fieldType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        $credentials = [
-            $loginField => $request->login,
-            'password' => $request->password,
-        ];
-
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt([$fieldType => $request->login, 'password' => $request->password])) {
             $request->session()->regenerate();
 
             $user = Auth::user();
 
-            if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard');
+            if ($user->role === 'buyer') {
+                return redirect()->route('buyer.dashboard')->with('success', 'Selamat datang kembali, ' . $user->username . '.');
+            } elseif ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard')->with('success', 'Halo Admin, ' . $user->username . '.');
+            } else {
+                return redirect()->intended('/')->with('success', 'Berhasil masuk.');
             }
-
-            return redirect()->route('buyer.dashboard');
         }
 
         return back()->withErrors([
@@ -47,9 +47,10 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Kamu telah keluar dari sesi.');
     }
 }
