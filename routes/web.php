@@ -15,11 +15,15 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return 'Admin Dashboard';
-    })->name('admin.dashboard');
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/admin/dashboard', function () {
+            return 'Admin Dashboard';
+        })->name('admin.dashboard');
+    });
 
-    Route::get('/dashboard', function () {
-        return 'Buyer Dashboard';
-    })->name('buyer.dashboard');
+    Route::middleware('role:buyer')->group(function () {
+        Route::get('/dashboard', function () {
+            return 'Buyer Dashboard';
+        })->name('buyer.dashboard');
+    });
 });
