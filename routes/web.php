@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -16,9 +17,7 @@ Route::middleware('auth')->post('/logout', [LoginController::class, 'logout'])->
 
 Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
-        Route::get('/admin/dashboard', function () {
-            return 'Admin Dashboard';
-        })->name('admin.dashboard');
+        Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     });
 
     Route::middleware('role:buyer')->group(function () {

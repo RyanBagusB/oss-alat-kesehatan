@@ -33,7 +33,7 @@ class LoginController extends Controller
             if ($user->role === 'buyer') {
                 return redirect()->route('buyer.dashboard')->with('success', 'Selamat datang kembali, ' . $user->username . '.');
             } elseif ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard')->with('success', 'Halo Admin, ' . $user->username . '.');
+                return redirect()->route('admin.dashboard')->with('success', 'Halo, ' . $user->username . '.');
             } else {
                 return redirect()->intended('/')->with('success', 'Berhasil masuk.');
             }
@@ -51,6 +51,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Kamu telah keluar dari sesi.');
+        return redirect()->route('login')->with('success', 'Berhasil keluar.');
     }
 }

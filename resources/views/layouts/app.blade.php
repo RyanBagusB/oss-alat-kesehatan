@@ -3,16 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {{ ($title ?? 'OSS Alat Kesehatan') }}
-        @if(config('app.name'))
-            | {{ config('app.name') }}
-        @endif
-    </title>
+    <title>{{ $title ?? 'OSS Alat Kesehatan' }}@if(config('app.name')) | {{ config('app.name') }}@endif</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="flex flex-col">
-    @yield('content')
+<body class="flex flex-col min-h-screen">
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             @if (session('success'))
@@ -24,6 +19,9 @@
             @endif
         });
     </script>
+
+    @yield('body')
+
     @stack('scripts')
 </body>
 </html>
