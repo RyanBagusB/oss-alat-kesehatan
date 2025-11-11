@@ -61,7 +61,7 @@ class RegisterController extends Controller
 
         auth()->login($user);
 
-        return redirect()->route('buyer.dashboard')
+        return redirect()->route('buyer.home')
             ->with('success', 'Pendaftaran berhasil! Selamat datang, ' . $user->username . '.');
     }
 }

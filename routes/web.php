@@ -27,8 +27,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:buyer')->group(function () {
-        Route::get('/dashboard', function () {
-            return 'Buyer Dashboard';
-        })->name('buyer.dashboard');
+        Route::get('/home', function () {
+            return 'Buyer Home';
+        })->name('buyer.home');
     });
 });
