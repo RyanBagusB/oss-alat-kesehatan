@@ -31,7 +31,7 @@ class LoginController extends Controller
             $user = Auth::user();
 
             if ($user->role === 'buyer') {
-                return redirect()->route('buyer.home')->with('success', 'Selamat datang kembali, ' . $user->username . '.');
+                return redirect()->route('buyer.products.index')->with('success', 'Selamat datang kembali, ' . $user->username . '.');
             } elseif ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard')->with('success', 'Halo, ' . $user->username . '.');
             } else {

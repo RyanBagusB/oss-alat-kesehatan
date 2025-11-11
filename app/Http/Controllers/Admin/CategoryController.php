@@ -29,16 +29,20 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:categories,name|max:255',
+            'name'        => 'required|unique:categories,name|max:255',
+            'description' => 'required|max:1000',
         ], [
-            'name.required' => 'Nama kategori wajib diisi.',
-            'name.unique'   => 'Nama kategori sudah digunakan.',
-            'name.max'      => 'Nama kategori tidak boleh lebih dari 255 karakter.',
+            'name.required'        => 'Nama kategori wajib diisi.',
+            'name.unique'          => 'Nama kategori sudah digunakan.',
+            'name.max'             => 'Nama kategori tidak boleh lebih dari 255 karakter.',
+            'description.required' => 'Deskripsi kategori wajib diisi.',
+            'description.max'      => 'Deskripsi tidak boleh lebih dari 1000 karakter.',
         ]);
 
         Category::create([
-            'id'   => (string) Str::uuid(),
-            'name' => $request->name,
+            'id'          => (string) Str::uuid(),
+            'name'        => $request->name,
+            'description' => $request->description,
         ]);
 
         return redirect()
@@ -49,7 +53,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         return view('admin.categories.edit', [
-            'title' => 'Edit Kategori',
+            'title'    => 'Edit Kategori',
             'category' => $category,
         ]);
     }
@@ -57,15 +61,19 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => 'required|unique:categories,name,' . $category->id . '|max:255',
+            'name'        => 'required|unique:categories,name,' . $category->id . '|max:255',
+            'description' => 'required|max:1000',
         ], [
-            'name.required' => 'Nama kategori wajib diisi.',
-            'name.unique'   => 'Nama kategori sudah digunakan oleh kategori lain.',
-            'name.max'      => 'Nama kategori tidak boleh lebih dari 255 karakter.',
+            'name.required'        => 'Nama kategori wajib diisi.',
+            'name.unique'          => 'Nama kategori sudah digunakan oleh kategori lain.',
+            'name.max'             => 'Nama kategori tidak boleh lebih dari 255 karakter.',
+            'description.required' => 'Deskripsi kategori wajib diisi.',
+            'description.max'      => 'Deskripsi tidak boleh lebih dari 1000 karakter.',
         ]);
 
         $category->update([
-            'name' => $request->name,
+            'name'        => $request->name,
+            'description' => $request->description,
         ]);
 
         return redirect()

@@ -17,9 +17,9 @@ class RedirectIfAuthenticatedCustom
                 case 'admin':
                     return redirect()->route('admin.dashboard');
                 case 'buyer':
-                    return redirect()->route('buyer.home');
+                    return redirect()->route('buyer.products.index');
                 default:
-                    return redirect('/home');
+                    return redirect('/');
             }
         }
 

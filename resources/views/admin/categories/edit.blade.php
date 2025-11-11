@@ -74,10 +74,20 @@
                                focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all"
                         placeholder="Masukkan nama kategori"
                     >
-                    @error('name')
-                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
-                    @enderror
                 </div>
+
+                {{-- Deskripsi Kategori --}}
+                <div class="mt-4">
+                    <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="4"
+                        class="mt-1 w-full px-4 py-2.5 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 
+                            focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all"
+                        placeholder="Masukkan deskripsi kategori">{{ old('description', $category->description) }}</textarea>
+                </div>
+
 
                 {{-- Tombol Submit --}}
                 <div class="mt-6">

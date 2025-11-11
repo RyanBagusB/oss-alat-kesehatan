@@ -56,6 +56,7 @@
                     <tr>
                         <th class="px-4 py-3 text-left font-bold tracking-wide">#</th>
                         <th class="px-4 py-3 text-left font-bold tracking-wide">Nama Kategori</th>
+                        <th class="px-4 py-3 text-left font-bold tracking-wide">Deskripsi</th>
                         <th class="px-4 py-3 text-center font-bold tracking-wide">Aksi</th>
                     </tr>
                 </thead>
@@ -64,6 +65,7 @@
                         <tr class="transition-colors hover:bg-indigo-50/50">
                             <td class="px-4 py-3">{{ $index + 1 }}</td>
                             <td class="px-4 py-3">{{ $category->name }}</td>
+                            <td class="px-4 py-3">{{ \Illuminate\Support\Str::limit($category->description, 10) }}</td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center justify-center gap-x-2 h-full">
                                     {{-- Tombol Edit --}}

@@ -10,7 +10,7 @@ class Category extends Model
     protected $table = 'categories';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description'];
 
     protected static function boot(): void
     {

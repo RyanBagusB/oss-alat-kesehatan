@@ -75,6 +75,20 @@
                     >
                 </div>
 
+                {{-- Deskripsi Kategori --}}
+                <div class="mt-4">
+                    <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi Kategori</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="4"
+                        required
+                        class="mt-1 w-full px-4 py-2.5 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 
+                            focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all"
+                        placeholder="Masukkan deskripsi kategori"
+                    >{{ old('description') }}</textarea>
+                </div>
+
                 {{-- Tombol Submit --}}
                 <div class="mt-6">
                     <button type="submit"
