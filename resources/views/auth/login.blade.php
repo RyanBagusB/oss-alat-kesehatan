@@ -47,7 +47,7 @@
                 <button
                     type="submit"
                     class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg 
-                           transition-all duration-200 shadow-sm hover:shadow-md"
+                           transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
                 >
                     Masuk
                 </button>
