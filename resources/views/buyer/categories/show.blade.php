@@ -21,10 +21,10 @@
     {{-- Header Toko --}}
     <div>
         <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800">
-            {{ $category->name ?? 'Bandar Alat Kesehatan' }}
+            {{ $category->name }}
         </h1>
         <p class="mt-2 text-gray-600 max-w-2xl">
-            {{ $category->description ?? 'Selamat datang di toko kami. Temukan berbagai alat kesehatan berkualitas untuk kebutuhan rumah sakit, klinik, maupun pribadi. Semua produk kami terjamin aman dan terpercaya.' }}
+            {{ $category->description ?? 'Tidak ada deskripsi untuk kategori ini.' }}
         </p>
     </div>
 
@@ -83,10 +83,8 @@
                         </a>
 
                         {{-- Tombol Add to Cart --}}
-                        <form action="{{ route('buyer.cart.store') }}" method="POST" class="w-full">
+                        <form action="#" method="POST" class="w-full">
                             @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="quantity" value="1">
                             <button type="submit" 
                                     class="flex items-center justify-center gap-2 w-full px-4 py-2.5 
                                            text-sm font-medium text-white bg-indigo-600 rounded-lg 

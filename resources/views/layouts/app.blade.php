@@ -6,7 +6,7 @@
     <title>{{ $title ?? 'OSS Alat Kesehatan' }}@if(config('app.name')) | {{ config('app.name') }}@endif</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="flex flex-col min-h-screen">
+<body>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
